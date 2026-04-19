@@ -1,20 +1,26 @@
+import signal
 from scraper import fetch_news
 from notifier import send_email
-import time
+
+# 🔥 Force stop after 25 seconds
+def timeout_handler(signum, frame):
+    raise Exception("Execution timed out")
+
+signal.signal(signal.SIGALRM, timeout_handler)
+signal.alarm(25)
 
 def run():
     print("Fetching Navy News...")
-
     news = fetch_news()
 
     if news:
-        print("Sending email...")
-        send_email(news)
+        send_email("\n".join(news))
+        print("Email sent")
     else:
-        print("No news found")
+        print("No news or failed to fetch")
 
 if __name__ == "__main__":
-    while True:
+    try:
         run()
-        print("Sleeping for 7 days...")
-        time.sleep(7 * 24 * 60 * 60)  # 7 days
+    except Exception as e:
+        print("Stopped:", e)

@@ -10,7 +10,7 @@ def fetch_news():
     try:
         response = requests.get(
             NAVY_URL,
-            headers=headers,
+            headers={"User-Agent": "Mozilla/5.0"},
             timeout=(5, 10)  # (connect timeout, read timeout)
         )
 

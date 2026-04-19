@@ -1,7 +1,7 @@
+import os
+
+EMAIL = os.getenv("EMAIL")
+PASSWORD = os.getenv("PASSWORD")
+TO_EMAIL = os.getenv("TO_EMAIL")
+
 NAVY_URL = "https://www.joinindiannavy.gov.in/en"
-
-
-# Email config
-EMAIL = "saip05501@gmail.com"
-PASSWORD = "mwvebonsgzvapmaf"
-TO_EMAIL = "2317045@ritindia.edu"
